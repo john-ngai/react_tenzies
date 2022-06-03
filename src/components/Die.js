@@ -1,6 +1,10 @@
 export default function Die(props) {
-  return (
-    <div className={props.isHeld ? "die--face hold" : "die--face"}>
+  const styles = {
+    backgroundColor: props.isHeld ? "#59E391" : "#FFF"
+  };
+
+  return ( 
+    <div className="die--face" style={styles}>
       <h2 className="die--num">{props.value}</h2>
     </div>
   );
