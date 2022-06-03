@@ -41,7 +41,7 @@ main {
   cursor: pointer;
 }
 
-.die--face.active {
+.die--face.hold {
  background-color: #59E391;
 }
 
