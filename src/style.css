@@ -41,6 +41,10 @@ main {
   cursor: pointer;
 }
 
+.die--face.active {
+ background-color: #59E391;
+}
+
 .die--num {
   font-size: 1.5rem;
 }
