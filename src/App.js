@@ -10,9 +10,11 @@ export default function App() {
     }
     return newDies;
   }
+
+  const rollDies = () => setDies(allNewDies());
   
   const [dies, setDies] = useState(allNewDies());
-  
+
   const dieElements = dies.map(dice => <Die value={dice} />);
 
   return (
@@ -20,6 +22,10 @@ export default function App() {
       <div className="container--dies">
         {dieElements}
       </div>
+
+      <button className='button--roll'
+        onClick={rollDies}
+      >Roll</button>
     </main>
   );
 }
