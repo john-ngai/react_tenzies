@@ -19,7 +19,7 @@ main {
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -54,5 +54,4 @@ main {
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
   color: #FFF;
   cursor: pointer;
-  margin-top: 50px;
 }
