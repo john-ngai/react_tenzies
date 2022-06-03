@@ -2,11 +2,16 @@ import { useState } from 'react';
 import Die from "./components/Die";
 
 export default function App() {
-  // Return an array of 10 random numbers between 1-6 inclusive.
+  // Return an array of 10 objects containing random values between 1-6 inclusive.
   const allNewDies = () => {
     const newDies = [];
+    const getRandomNumber = max => Math.ceil(Math.random() * max)
     for (let count = 1; count <= 10; count++) {
-      newDies.push(Math.ceil(Math.random() * 6));
+      newDies.push({
+        id: count,
+        value: getRandomNumber(6),
+        isHeld: false
+      });
     }
     return newDies;
   }
@@ -15,7 +20,13 @@ export default function App() {
   
   const [dies, setDies] = useState(allNewDies());
 
-  const dieElements = dies.map(dice => <Die value={dice} />);
+  const dieElements = dies.map(dice => (
+    <Die
+      key={dice.id}
+      value={dice.value}
+      isHeld={dice.isHeld}
+    />
+  ));
 
   return (
     <main>
