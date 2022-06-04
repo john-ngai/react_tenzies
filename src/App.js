@@ -2,10 +2,11 @@ import { useState } from 'react';
 import Die from "./components/Die";
 
 export default function App() {
+  const getRandomNumber = max => Math.ceil(Math.random() * max)
+
   // Return an array of 10 objects containing random values between 1-6 inclusive.
   const allNewDies = () => {
     const newDies = [];
-    const getRandomNumber = max => Math.ceil(Math.random() * max)
     for (let count = 1; count <= 10; count++) {
       newDies.push({
         id: count,
@@ -18,7 +19,9 @@ export default function App() {
   
   const [dies, setDies] = useState(allNewDies());
 
-  const rollDies = () => setDies(allNewDies());
+  const rollDies = () => setDies(oldDies => oldDies.map(dice => {
+    return dice.isHeld ? dice : { ...dice, value: getRandomNumber(6) }
+  }));
 
   const holdDice = id => setDies(oldDies => oldDies.map(dice => {
     return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
