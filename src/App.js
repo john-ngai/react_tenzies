@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Die from "./components/Die";
 
 export default function App() {
-  const getRandomNumber = max => Math.ceil(Math.random() * max)
+  const getRandomNumber = max => Math.ceil(Math.random() * max);
 
   // Return an array of 10 objects containing random values between 1-6 inclusive.
   const allNewDies = () => {
@@ -19,10 +19,13 @@ export default function App() {
   
   const [dies, setDies] = useState(allNewDies());
 
+  // Only roll the dies that aren't being held (i.e., isHeld = false).
   const rollDies = () => setDies(oldDies => oldDies.map(dice => {
-    return dice.isHeld ? dice : { ...dice, value: getRandomNumber(6) }
+    return dice.isHeld ? dice : { ...dice, value: getRandomNumber(6) };
   }));
 
+
+  // Change the state of isHeld to the opposite boolean.
   const holdDice = id => setDies(oldDies => oldDies.map(dice => {
     return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
   }));
