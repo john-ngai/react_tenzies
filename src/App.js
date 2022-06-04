@@ -1,19 +1,6 @@
 import { useState } from 'react';
 import Die from "./components/Die";
 
-/**
- * Challenge: Create a function `holdDice` that takes
- * `id` as a parameter. For now, just have the function
- * console.log(id).
- * 
- * Then, figure out how to pass that function down to each
- * instance of the Die component so when each one is clicked,
- * it logs its own unique ID property. (Hint: there's more
- * than one way to make that work, so just choose whichever
- * you want)
- * 
- */
-
 export default function App() {
   // Return an array of 10 objects containing random values between 1-6 inclusive.
   const allNewDies = () => {
@@ -33,7 +20,9 @@ export default function App() {
 
   const rollDies = () => setDies(allNewDies());
 
-  const holdDice = id => console.log(id);
+  const holdDice = id => setDies(oldDies => oldDies.map(dice => {
+    return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
+  }));
   
   const dieElements = dies.map(dice => (
     <Die
