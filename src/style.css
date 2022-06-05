@@ -23,10 +23,27 @@ main {
   align-items: center;
 }
 
+.title {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.instructions {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #4A4E74;
+  margin-top: -40px;
+  padding: 0 43px;
+  text-align: center;
+}
+
 .container--dies {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
   gap: 18px;
+  margin-top: -25px;
 }
 
 .die--face {

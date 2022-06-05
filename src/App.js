@@ -16,7 +16,7 @@ export default function App() {
     }
     return newDies;
   }
-  
+
   const [dies, setDies] = useState(allNewDies());
 
   // Only roll the dies that aren't being held (i.e., isHeld = false).
@@ -29,7 +29,7 @@ export default function App() {
   const holdDice = id => setDies(oldDies => oldDies.map(dice => {
     return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
   }));
-  
+
   const dieElements = dies.map(dice => (
     <Die
       key={dice.id}
@@ -41,6 +41,9 @@ export default function App() {
 
   return (
     <main>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+
       <div className="container--dies">
         {dieElements}
       </div>
