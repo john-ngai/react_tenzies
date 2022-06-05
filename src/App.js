@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Die from "./components/Die";
+import Confetti from 'react-confetti';
 
 export default function App() {
   const getRandomNumber = max => Math.ceil(Math.random() * max);
@@ -57,19 +58,23 @@ export default function App() {
 
   return (
     <main>
-      <h1 className="title">Tenzies</h1>
-      <p className="instructions">
+      {tenzies && <Confetti width={320} height={320} />}
+
+      <h1 className='title'>Tenzies</h1>
+      <p className='instructions'>
         Roll until all dice are the same. Click each die to freeze it 
         at its current value between rolls.
       </p>
 
-      <div className="container--dies">
+      <div className='container--dies'>
         {dieElements}
       </div>
 
       <button className='button--roll'
         onClick={rollDies}
-      >Roll</button>
+        >
+        {tenzies ? 'New Game' : 'Roll'}
+      </button>
     </main>
   );
 }
