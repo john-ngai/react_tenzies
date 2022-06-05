@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Die from "./components/Die";
 
 export default function App() {
@@ -17,7 +17,11 @@ export default function App() {
     return newDies;
   }
 
+  // States
   const [dies, setDies] = useState(allNewDies());
+  const [tenzies, setTenzies] = useState(false);
+
+  useEffect(() => console.log('Dice state change'), [dies]);
 
   // Only roll the dies that aren't being held (i.e., isHeld = false).
   const rollDies = () => setDies(oldDies => oldDies.map(dice => {
@@ -30,6 +34,7 @@ export default function App() {
     return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
   }));
 
+  // Create instances of the Die component.
   const dieElements = dies.map(dice => (
     <Die
       key={dice.id}
