@@ -46,6 +46,11 @@ export default function App() {
     return dice.id === id ? { ...dice, isHeld: !dice.isHeld } : dice;
   }));
 
+  const resetGame = () => {
+    setDies(allNewDies());
+    setTenzies(false);
+  }
+
   // Create instances of the Die component.
   const dieElements = dies.map(dice => (
     <Die
@@ -55,14 +60,14 @@ export default function App() {
       holdDice={() => holdDice(dice.id)}
     />
   ));
-
+  
   return (
     <main>
       {tenzies && <Confetti width={320} height={320} />}
 
       <h1 className='title'>Tenzies</h1>
       <p className='instructions'>
-        Roll until all dice are the same. Click each die to freeze it 
+        Roll until all dies are the same. Click each dice to freeze it 
         at its current value between rolls.
       </p>
 
@@ -71,7 +76,7 @@ export default function App() {
       </div>
 
       <button className='button--roll'
-        onClick={rollDies}
+        onClick={() => tenzies ? resetGame() : rollDies()}
         >
         {tenzies ? 'New Game' : 'Roll'}
       </button>
