@@ -21,7 +21,18 @@ export default function App() {
   const [dies, setDies] = useState(allNewDies());
   const [tenzies, setTenzies] = useState(false);
 
-  useEffect(() => console.log('Dice state change'), [dies]);
+  // setTenzies(true) if all dies are held and are the same value.
+  useEffect(() => {
+    const referenceValue = dies[0].value;
+    const sameValue = dies.every(dice => dice.value === referenceValue);
+
+    const isHeld = dies.every(dice => dice.isHeld === true);
+    
+    if (isHeld && sameValue) {
+      setTenzies(true);
+      console.log('You won!');
+    }
+  }, [dies]);
 
   // Only roll the dies that aren't being held (i.e., isHeld = false).
   const rollDies = () => setDies(oldDies => oldDies.map(dice => {
@@ -47,7 +58,10 @@ export default function App() {
   return (
     <main>
       <h1 className="title">Tenzies</h1>
-      <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it 
+        at its current value between rolls.
+      </p>
 
       <div className="container--dies">
         {dieElements}
