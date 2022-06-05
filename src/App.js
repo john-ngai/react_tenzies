@@ -31,7 +31,6 @@ export default function App() {
     
     if (isHeld && sameValue) {
       setTenzies(true);
-      console.log('You won!');
     }
   }, [dies]);
 
@@ -60,7 +59,7 @@ export default function App() {
       holdDice={() => holdDice(dice.id)}
     />
   ));
-  
+
   return (
     <main>
       {tenzies && <Confetti width={320} height={320} />}
